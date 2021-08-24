@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">To do list</string>
+    <string name="til_criar_tarefa">Criar Tarefa</string>
+    <string name="hint_titulo">Titulo</string>
+    <string name="hint_desc">Descrição</string>
+    <string name="hitn_data">Data</string>
+    <string name="hint_hora">Hora</string>
+    <string name="btn_criar_tarefa">Criar Tarefa</string>
+    <string name="btn_cancel">Cancelar</string>
+</resources>
