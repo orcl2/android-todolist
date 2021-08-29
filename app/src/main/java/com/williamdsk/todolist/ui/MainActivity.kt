@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.williamdsk.todolist.R
 import com.williamdsk.todolist.databinding.ActivityMainBinding
 import com.williamdsk.todolist.datasource.TaskDataSource
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         updateList()
         insertListeners()
+        //DATASTORE
+        //ROOM
     }
 
     private fun insertListeners() {
@@ -50,7 +53,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateList() {
-        adapter.submitList(TaskDataSource.getList())
+        val list = TaskDataSource.getList()
+
+        binding.includeEmptyState.emptyState.visibility = if(list.isEmpty()) View.VISIBLE else View.GONE
+
+        adapter.submitList(list)
     }
     companion object {
         private const val CREATE_NEW_TASK = 1000

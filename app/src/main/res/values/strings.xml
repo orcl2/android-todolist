@@ -11,4 +11,5 @@
     <string name="cria_nova_tarefa">Cria nova tarefa</string>
     <string name="editar">Editar</string>
     <string name="deletar">Deletar</string>
+    <string name="oops_voc_n_o_tem_nenhuma_tarefa">Oops! Você não possui\n tarefas hoje!</string>
 </resources>
