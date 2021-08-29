@@ -1,5 +1,6 @@
 package com.williamdsk.todolist.ui
 
+import android.app.Activity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.*
@@ -22,6 +23,16 @@ class AddTaskActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if(intent.hasExtra(TASK_ID)){
+            val taskId = intent.getIntExtra(TASK_ID, 0)
+            TaskDataSource.findById(taskId)?.let {
+                binding.tilTitle.text = it.title
+                binding.tilDesc.text = it.description
+                binding.tilDate.text = it.date
+                binding.tilHour.text = it.hour
+            }
+        }
 
         insertListeners()
     }
@@ -62,11 +73,17 @@ class AddTaskActivity : AppCompatActivity(){
                 title = binding.tilTitle.text,
                 description = binding.tilDesc.text,
                 date = binding.tilDate.text,
-                hour = binding.tilHour.text
+                hour = binding.tilHour.text,
+                id = intent.getIntExtra(TASK_ID, 0)
             )
             TaskDataSource.insertTask(task)
-            Log.e("TAG", "" + TaskDataSource.getList())
+            setResult(Activity.RESULT_OK)
+            finish()
         }
+    }
+
+    companion object {
+        const val TASK_ID = "task_id"
     }
 
 }
